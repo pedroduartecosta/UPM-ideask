@@ -149,7 +149,7 @@ module.exports = {
     ***************************************************************************/
     cors: {
       allowOrigins: [
-        'https://ideask.herokuapp.com/',
+        'https://ideask.herokuapp.com',
       ]
     },
 
