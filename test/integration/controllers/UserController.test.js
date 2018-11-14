@@ -2,7 +2,7 @@ var supertest = require('supertest');
 
 describe('UserController.login', function() {
 
-  describe('#login()', function() {
+  /*describe('#login()', function() {
     it('should redirect to /my/page', function (done) {
       supertest(sails.hooks.http.app)
       .post('/users/login')
@@ -10,6 +10,6 @@ describe('UserController.login', function() {
       .expect(302)
       .expect('location','/my/page', done);
     });
-  });
+  });*/
 
 });
