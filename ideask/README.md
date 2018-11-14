@@ -2,6 +2,11 @@
 
 a [Sails v1](https://sailsjs.com) application
 
+# How to run
+
+* npm install sails -g
+* sails lift
+
 
 ### Links
 
