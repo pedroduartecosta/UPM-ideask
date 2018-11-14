@@ -1,11 +1,6 @@
-# ideask
+# app
 
 a [Sails v1](https://sailsjs.com) application
-
-# How to run
-
-* npm install sails -g
-* sails lift
 
 
 ### Links
@@ -19,7 +14,7 @@ a [Sails v1](https://sailsjs.com) application
 
 ### Version info
 
-This app was originally generated on Wed Nov 14 2018 16:25:15 GMT+0100 (CET) using Sails v1.1.0.
+This app was originally generated on Wed Nov 14 2018 19:05:58 GMT+0100 (CET) using Sails v1.1.0.
 
 <!-- Internally, Sails used [`sails-generate@1.16.0`](https://github.com/balderdashy/sails-generate/tree/v1.16.0/lib/core-generators/new). -->
 
