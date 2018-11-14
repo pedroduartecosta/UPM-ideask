@@ -251,7 +251,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     onlyAllowOrigins: [
-       'https://ideask.herokuapp.com/',
+       'https://ideask.herokuapp.com',
     ],
 
 
