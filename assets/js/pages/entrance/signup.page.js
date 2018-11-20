@@ -56,9 +56,19 @@ parasails.registerPage('signup', {
 
       var argins = this.formData;
 
-      // Validate full name:
-      if(!argins.fullName) {
-        this.formErrors.fullName = true;
+      // // Validate full name:
+      // if(!argins.fullName) {
+      //   this.formErrors.fullName = true;
+      // }
+
+      // Validate first name:
+      if(!argins.firstName) {
+        this.formErrors.firstName = true;
+      }
+
+      // Validate last name:
+      if(!argins.lastName) {
+        this.formErrors.lastName = true;
       }
 
       // Validate email:
@@ -76,16 +86,19 @@ parasails.registerPage('signup', {
         this.formErrors.confirmPassword = true;
       }
 
-      // Validate ToS agreement:
-      if(!argins.agreed) {
-        this.formErrors.agreed = true;
-      }
+      // // Validate ToS agreement:
+      // if(!argins.agreed) {
+      //   this.formErrors.agreed = true;
+      // }
 
       // If there were any issues, they've already now been communicated to the user,
       // so simply return undefined.  (This signifies that the submission should be
       // cancelled.)
       if (Object.keys(this.formErrors).length > 0) {
         return;
+      } else {
+        // show that the form was submitted successfully
+        this.cloudSuccess = true;
       }
 
       return argins;
