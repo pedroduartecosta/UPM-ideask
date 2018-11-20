@@ -1,6 +1,6 @@
 var util = require('util');
 
-var chai = require('chai')
+var chai = require('chai');
 const chaiSubset = require('chai-subset');
 chai.use(chaiSubset);
 

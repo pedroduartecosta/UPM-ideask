@@ -1,0 +1,27 @@
+<div id="new-idea" v-cloak>
+  <div class="container" v-if="!cloudSuccess">
+    <h1 class="text-center">Create an idea</h1>
+    <div class="signup-form">
+      <p class="text-center">Share your ideas with the world!</p>
+      <hr/>
+      <ajax-form action="signup" :syncing.sync="syncing" :cloud-error.sync="cloudError" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input class="form-control" id="title" type="text"  :class="[formErrors.title ? 'is-invalid' : '']" v-model.trim="formData.title" placeholder="Appealing title" autocomplete="name" focus-first>
+          <div class="invalid-feedback" v-if="formErrors.idea">Please provide a title for your idea.</div>
+        </div>
+        <div class="form-group">
+          <label for="email-address">Description</label>
+          <input class="form-control" id="description" type="textarea"  :class="[formErrors.description ? 'is-invalid' : '']" v-model.trim="formData.description" placeholder="">
+        </div>
+        <div class="form-group">
+          <ajax-button type="submit" :syncing="syncing" class="btn-dark btn-lg btn-block">Create</ajax-button>
+        </div>
+      </ajax-form>
+    </div>
+  </div>
+  <div class="container" v-if="cloudSuccess">
+    <h1 class="text-center">Congrats! Your idea is live.</h1>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
