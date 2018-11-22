@@ -149,6 +149,49 @@ describe('EntranceController', function() {
                             .expect(401)
         })
 
+    }),
+
+    describe('#logout()', () => {
+
+        this.afterEach(async () => {
+            //clean database after testing
+            return await User.destroy({}).fetch()
+        })
+
+        it('should succeed for a logged in user', async () => {
+
+            //arrange
+            //create a valid record in the database
+            const hashedPassword = await sails.helpers.passwords.hashPassword(validUser.password)
+            const userToCreate = {
+                emailAddress: validUser.emailAddress,
+                password: hashedPassword,
+                firstName: validUser.firstName,
+                lastName: validUser.lastName
+            }
+
+            const user = await User.create(userToCreate).fetch()
+            if (!user) {
+                throw new Error('Creating user failed')
+            }
+            await supertest(sails.hooks.http.app)
+                    .put('/api/v1/entrance/login')
+                    .send({
+                        emailAddress: validUser.emailAddress,
+                        password: validUser.password
+                    })
+                    .expect(200)
+
+            //act assert
+            await supertest(sails.hooks.http.app)
+                        .get('/api/v1/account/llogout')
+                        .expect(200)
+
+            return await supertest(sails.hooks.http.app)
+                        .get('/welcome/')
+                        .expect(401)
+        })
+
     })
 
 });
