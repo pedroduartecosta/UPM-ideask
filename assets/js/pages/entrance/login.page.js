@@ -22,6 +22,9 @@ parasails.registerPage('login', {
 
     // Server error state for the form
     cloudError: '',
+
+    // Success state when form has been submitted
+    cloudSuccess: false,
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -44,6 +47,7 @@ parasails.registerPage('login', {
       // Redirect to the logged-in dashboard on success.
       // > (Note that we re-enable the syncing state here.  This is on purpose--
       // > to make sure the spinner stays there until the page navigation finishes.)
+      this.cloudSuccess = true;
       this.syncing = true;
       window.location = '/';
     },
