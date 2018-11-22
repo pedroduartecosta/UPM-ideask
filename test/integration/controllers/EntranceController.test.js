@@ -184,7 +184,7 @@ describe('EntranceController', function() {
 
             //act assert
             await supertest(sails.hooks.http.app)
-                        .get('/api/v1/account/llogout')
+                        .get('/api/v1/account/logout')
                         .expect(200)
 
             return await supertest(sails.hooks.http.app)

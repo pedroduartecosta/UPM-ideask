@@ -52,8 +52,16 @@
           <% if(me) { %>
           <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a>
           <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/account">Settings</a>
-              <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/logout">Logout</a>
+              <!-- <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/logout">Logout</a> -->
           <!-- Only in desktop nav -->
+          <div class="nav-item dropdown d-none d-sm-block">
+            <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Logout</a>
+            <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
+              <div class="dropdown-item">Do you really want to log out?</div>
+              <a class="dropdown-item" href="/logout">Yes</a>
+              <div class="dropdown-item">No</div>
+          </div>
+
           <!-- <div class="nav-item dropdown d-none d-sm-block">
             <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
             <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
