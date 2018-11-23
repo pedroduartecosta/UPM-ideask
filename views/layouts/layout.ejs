@@ -51,8 +51,8 @@
         <div class="navbar-nav flex-row">
           <!-- LOGGED-IN NAVIGATION -->
           <% if(me) { %>
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a>
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/account">Settings</a>
+          <!-- <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a>
+          <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/account">Settings</a> -->
               <!-- <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/logout">Logout</a> -->
           <!-- Only in desktop nav -->
           <div class="nav-item dropdown d-none d-sm-block">
@@ -75,10 +75,11 @@
           <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/logout">Sign out</a>
           <% } else { %>
           <!-- LOGGED-OUT NAVIGATION -->
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/faq">FAQ</a>
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login">Login</a>
+          <!-- <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/faq">FAQ</a> -->
+          <!-- <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login">Login</a> -->
           <!-- Only in desktop nav -->
           <div class="form-inline d-none ml-2 d-md-block" >
+            <a class="btn btn-outline-info" href="/login">Login</a>
             <a class="btn btn-outline-info" href="/signup">Register</a>
           </div>
           <!-- Only in mobile nav -->
