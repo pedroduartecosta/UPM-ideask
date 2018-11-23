@@ -47,7 +47,7 @@
           <p class="text-danger" v-else-if="cloudError"><small>An error occured while processing your request. Please check your information and try again, or <a href="/support">contact support</a> if the error persists.</small></p>
           <p class="text-success text-center" v-if="cloudSuccess && !cloudError">Your account is beeing created. Please be patient.</p>
           <div class="form-group">
-            <ajax-button type="submit" :syncing="syncing" class="btn-dark btn-lg btn-block">Save</ajax-button>
+            <ajax-button type="submit" :syncing="syncing" class="btn btn-primary btn-round btn-lg btn-block">Save</ajax-button>
           </div>
         </ajax-form>
         <!-- <p class="text-center">Have an account? <a href="/login">Sign in</a></p> -->
