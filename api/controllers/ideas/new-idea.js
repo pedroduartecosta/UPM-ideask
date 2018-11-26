@@ -13,18 +13,21 @@ module.exports = {
       maxLength: 200,
       example: 'New solution to store medical records with blockchain techonology.'
     },
-
+    subtitle: {
+      type: 'string',
+      required: true,
+      maxLength: 400,
+      example: 'New solution to store medical records with blockchain techonology.'
+    },
     description: {
       type: 'string',
       maxLength: 1000,
       example: 'This solution will allow patients and doctors to share....'
     },
-
-    rating: {
-      type: 'number',
-      isInteger: true,
-      min: 0,
-      max: 5,
+    notes: {
+      type: 'string',
+      maxLength: 1000,
+      example: 'This solution will allow patients and doctors to share....'
     },
   },
 
@@ -41,12 +44,18 @@ module.exports = {
   },
 
 
-  fn: async function () {
+  fn: async function (inputs, exits) {
 
-    // Respond with view.
-    return {};
+    var newIdeaRecord = await Idea.create({
+      title: inputs.title,
+      subtitle: inputs.subtitle,
+      description: inputs.description,
+      notes: inputs.notes
+    })
+    .fetch();
+
+    return exits.success();
 
   }
-
 
 };

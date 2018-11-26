@@ -32,6 +32,7 @@ describe('Idea (model)', function() {
 
   this.afterAll(async () => {
     //clean database after testing
+    await User.destroy({}).fetch()
     return await Idea.destroy({}).fetch()
   })
 

@@ -35,46 +35,33 @@ parasails.registerPage('idea', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
+    submittedForm: async function() {
+      this.cloudSuccess = true;
+      this.syncing = true;
+      window.location = '/';
+    },
+
     handleParsingForm: function() {
       // Clear out any pre-existing error messages.
       this.formErrors = {};
 
       var argins = this.formData;
 
-      // // Validate full name:
-      // if(!argins.fullName) {
-      //   this.formErrors.fullName = true;
-      // }
-
-      // Validate first name:
-      if(!argins.firstName) {
-        this.formErrors.firstName = true;
+      if(!argins.title) {
+        this.formErrors.title = true;
       }
 
-      // Validate last name:
-      if(!argins.lastName) {
-        this.formErrors.lastName = true;
+      if(!argins.subtitle) {
+        this.formErrors.subtitle = true;
       }
 
-      // Validate email:
-      if(!argins.emailAddress || !parasails.util.isValidEmailAddress(argins.emailAddress)) {
-        this.formErrors.emailAddress = true;
+      if(!argins.notes) {
+        this.formErrors.notes = true;
       }
-
-      // Validate password:
-      if(!argins.password) {
-        this.formErrors.password = true;
+      
+      if(!argins.description) {
+        this.formErrors.description = true;
       }
-
-      // Validate password confirmation:
-      if(argins.password && argins.password !== argins.confirmPassword) {
-        this.formErrors.confirmPassword = true;
-      }
-
-      // // Validate ToS agreement:
-      // if(!argins.agreed) {
-      //   this.formErrors.agreed = true;
-      // }
 
       // If there were any issues, they've already now been communicated to the user,
       // so simply return undefined.  (This signifies that the submission should be
