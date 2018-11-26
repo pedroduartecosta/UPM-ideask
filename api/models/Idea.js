@@ -25,12 +25,12 @@ module.exports = {
       example: 'This solution will allow patients and doctors to share....'
     },
 
-    rating: {
-      type: 'number',
-      isInteger: true,
-      min: 0,
-      max: 5,
+    subtitle: {
+      type: 'string',
+      maxLength: 1000,
+      example: 'This solution will allow patients and doctors to share....'
     },
+
     
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
