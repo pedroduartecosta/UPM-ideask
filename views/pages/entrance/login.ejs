@@ -1,29 +1,90 @@
-<div id="login" v-cloak>
-  <div class="container">
-    <h1 class="text-center">Login to your account</h1>
-    <div class="login-form-container">
-      <hr/>
-      <ajax-form action="login" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-data="formData" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()">
-        <div class="form-group">
-          <input type="email" class="form-control" placeholder="Email address" :class="[formErrors.emailAddress ? 'is-invalid' : '']" v-model.trim="formData.emailAddress" autocomplete="email" focus-first>
-          <div class="invalid-feedback" v-if="formErrors.emailAddress">Please provide a valid email address.</div>
+<div id="login" v-cloak class="page-header clear-filter" filter-color="orange">
+
+  <div class="page-header-image" style="background-image:url(/images/login2.jpeg)"></div>
+  <div class="content">
+    <div class="container">
+      <div class="col-md-4 ml-auto mr-auto">
+        <div class="card card-login card-plain">
+          <div class="card-header text-center">
+            <div class="logo-container">
+              <img src="/images/ideask-logo.png" alt="">
+            </div>
+          </div>
+          <ajax-form action="login" :syncing.sync="syncing" :cloud-error.sync="cloudError"
+                     :form-data="formData"
+                     :form-rules="formRules" :form-errors.sync="formErrors"
+                     @submitted="submittedForm()">
+
+            <div class="card-body">
+              <div class="input-group no-border input-lg">
+                <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i
+                                            class="now-ui-icons users_circle-08"></i></span>
+                </div>
+
+                <input type="email" class="form-control" placeholder="Email address"
+                       :class="[formErrors.emailAddress ? 'is-invalid' : '']"
+                       v-model.trim="formData.emailAddress"
+                       autocomplete="email" focus-first>
+                <div class="invalid-feedback" v-if="formErrors.emailAddress">
+                  Please provide a valid email address.
+                </div>
+              </div>
+
+
+              <div class="input-group no-border input-lg">
+                <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="now-ui-icons ui-1_lock-circle-open"></i>
+                                        </span>
+                </div>
+                <input type="password" class="form-control" placeholder="Password"
+                       :class="[formErrors.password ? 'is-invalid' : '']"
+                       v-model.trim="formData.password"
+                       autocomplete="current-password">
+                <div class="invalid-feedback" v-if="formErrors.password">Please enter your
+                  password.
+                </div>
+              </div>
+            </div>
+
+            <p class="text-danger" v-if="cloudError==='badCombo'">
+              <small>The credentials you entered are not associated with an account. Please check
+                your email
+                and/or password and try again.
+              </small>
+            </p>
+            <p class="text-danger" v-else-if="cloudError">
+              <small>An error occured while processing your request. Please check your information
+                and try again,
+                or <a href="/contact">contact support</a> if the error persists.
+              </small>
+            </p>
+            <p class="text-success text-center" v-if="cloudSuccess && !cloudError">You are being
+              logged in. Please be patient.</p>
+
+            <div class="card-footer text-center">
+              <ajax-button :syncing="syncing" class="btn btn-primary btn-round btn-lg btn-block">Login
+              </ajax-button>
+
+
+              <div class="text-center">
+                <h6>
+                  <a href="/signup" class="link text-center">register now</a>
+                </h6>
+              </div>
+              <!-- <div class="pull-right">
+                <h6>
+                  <a href="#pablo" class="link">Need Help?</a>
+                </h6>
+              </div> -->
+            </div>
+
+          </ajax-form>
+
+
         </div>
-        <div class="form-group">
-          <input type="password" class="form-control" placeholder="Password" :class="[formErrors.password ? 'is-invalid' : '']" v-model.trim="formData.password" autocomplete="current-password">
-          <div class="invalid-feedback" v-if="formErrors.password">Please enter your password.</div>
-        </div>
-        <!-- <div class="form-group form-check">
-          <input class="form-check-input" type="checkbox" id="remember" name="rememberMe" v-model="formData.rememberMe"/>
-          <label class="form-check-label" for="remember">Remember me</label>
-        </div> -->
-        <p class="text-danger" v-if="cloudError==='badCombo'"><small>The credentials you entered are not associated with an account. Please check your email and/or password and try again.</small></p>
-        <p class="text-danger" v-else-if="cloudError"><small>An error occured while processing your request. Please check your information and try again, or <a href="/contact">contact support</a> if the error persists.</small></p>
-        <p class="text-success text-center" v-if="cloudSuccess && !cloudError">You are being logged in. Please be patient.</p>
-        <div class="form-group">
-          <ajax-button :syncing="syncing" class="btn-dark btn-lg btn-block">Login</ajax-button>
-        </div>
-      </ajax-form>
-      <p class="text-center"><a href="/signup">register now</a></p>
+      </div>
     </div>
   </div>
 </div>
