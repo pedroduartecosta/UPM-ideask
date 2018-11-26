@@ -18,7 +18,7 @@ module.exports = {
       unique: true,
       isEmail: true,
       maxLength: 200,
-      example: 'mary.sue@example.com'
+      example: 'walter@white.com'
     },
 
     emailStatus: {
@@ -47,13 +47,29 @@ email status until they click the link in the confirmation email.`
       example: '2$28a8eabna301089103-13948134nad'
     },
 
-    fullName: {
+    firstName: {
       type: 'string',
       required: true,
-      description: 'Full representation of the user\'s name.',
-      maxLength: 120,
-      example: 'Mary Sue van der McHenst'
+      description: 'User\'s first name',
+      maxLength: 60,
+      example: 'Walter'
     },
+
+    lastName: {
+      type: 'string',
+      required: true,
+      description: 'Users\' last name',
+      maxLength: 60,
+      example: 'White'
+    },
+
+    // fullName: {
+    //   type: 'string',
+    //   required: true,
+    //   description: 'Full representation of the user\'s name.',
+    //   maxLength: 120,
+    //   example: 'Mary Sue van der McHenst'
+    // },
 
     isSuperAdmin: {
       type: 'boolean',
