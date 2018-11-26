@@ -5,7 +5,7 @@
 } %><!DOCTYPE html>
 <html>
   <head>
-    <title>NEW_APP_NAME</title>
+    <title>ideask</title>
 
     <% /* Viewport tag for sensible mobile support */ %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -38,22 +38,31 @@
 
     <% /* Auto-injected «link» tags: */ %>
     <!--STYLES-->
-    <link rel="stylesheet" href="/dependencies/bootstrap-4/bootstrap-4.css">
+    <link rel="stylesheet" href="/dependencies/bootstrap-4/bootstrap.min.css">
     <link rel="stylesheet" href="/dependencies/fontawesome.css">
+    <link rel="stylesheet" href="/dependencies/now-ui-kit.css">
     <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
   </head>
   <body>
     <div id="page-wrap">
-      <header id="page-header" class="navbar navbar-expand-sm navbar-dark bg-dark flex-column flex-md-row justify-content-between">
+      <header id="page-header" class="navbar navbar-expand-sm bg-primary flex-column flex-md-row justify-content-between">
         <a class="navbar-brand mr-0" href="/"><img class="logo" alt="NEW_APP_NAME logo" src="/images/logo.png"/></a>
         <div class="navbar-nav flex-row">
           <!-- LOGGED-IN NAVIGATION -->
           <% if(me) { %>
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a>
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/account">Settings</a>
-              <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/logout">Logout</a>
+          <!-- <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a>
+          <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/account">Settings</a> -->
+              <!-- <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/logout">Logout</a> -->
           <!-- Only in desktop nav -->
+          <div class="nav-item dropdown d-none d-sm-block">
+            <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Logout</a>
+            <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
+              <div class="dropdown-item">Do you really want to log out?</div>
+              <a class="dropdown-item" href="/logout">Yes</a>
+              <div class="dropdown-item">No</div>
+          </div>
+
           <!-- <div class="nav-item dropdown d-none d-sm-block">
             <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
             <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
@@ -66,10 +75,11 @@
           <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/logout">Sign out</a>
           <% } else { %>
           <!-- LOGGED-OUT NAVIGATION -->
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/faq">FAQ</a>
-          <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login">Log in</a>
+          <!-- <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/faq">FAQ</a> -->
+          <!-- <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login">Login</a> -->
           <!-- Only in desktop nav -->
           <div class="form-inline d-none ml-2 d-md-block" >
+            <a class="btn btn-outline-info" href="/login">Login</a>
             <a class="btn btn-outline-info" href="/signup">Register</a>
           </div>
           <!-- Only in mobile nav -->
@@ -135,7 +145,7 @@
     <script src="/dependencies/jquery.min.js"></script>
     <script src="/dependencies/vue.js"></script>
     <script src="/dependencies/vue-router.js"></script>
-    <script src="/dependencies/bootstrap-4/bootstrap-4.bundle.js"></script>
+    <script src="/dependencies/bootstrap-4/bootstrap.min.js"></script>
     <script src="/dependencies/cloud.js"></script>
     <script src="/dependencies/moment.js"></script>
     <script src="/dependencies/parasails.js"></script>

@@ -48,8 +48,9 @@ module.exports.datastores = {
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
     ***************************************************************************/
-   adapter: 'sails-mongo',
-   url: 'mongodb://admin:password123@ds233763.mlab.com:33763/heroku_gbtgm85k',
+    adapter: 'sails-mongo',
+    url: 'mongodb://admin:password123@ds233763.mlab.com:33763/heroku_gbtgm85k',
+
   },
 
 
