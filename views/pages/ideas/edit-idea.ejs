@@ -4,7 +4,7 @@
     <h1 class="text-center">Edit your idea</h1>
     <div class="idea-form">
       <hr/>
-      <ajax-form action="edit-idea" :syncing.sync="syncing" :cloud-error.sync="cloudError" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
+      <ajax-form action="editIdea" :syncing.sync="syncing" :cloud-error.sync="cloudError" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
         <div class="form-group">
           <label for="title">Title</label>
           <input class="form-control" id="title" type="text"  :class="[formErrors.title ? 'is-invalid' : '']" v-model.trim="idea.title" placeholder="Appealing title" value="idea.title" autocomplete="name" focus-first>
