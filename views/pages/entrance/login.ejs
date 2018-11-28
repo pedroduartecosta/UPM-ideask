@@ -18,66 +18,52 @@
             <div class="card-body">
               <div class="input-group no-border input-lg">
                 <div class="input-group-prepend">
-                                        <span class="input-group-text"> <i
-                                            class="now-ui-icons users_circle-08"></i></span>
+                <span class="input-group-text"> <i class="now-ui-icons users_circle-08"></i></span>
                 </div>
 
                 <input type="email" class="form-control" placeholder="Email address"
                        :class="[formErrors.emailAddress ? 'is-invalid' : '']"
                        v-model.trim="formData.emailAddress"
                        autocomplete="email" focus-first>
-                <div class="invalid-feedback" v-if="formErrors.emailAddress">
-                  Please provide a valid email address.
-                </div>
+                <div class="invalid-feedback" v-if="formErrors.emailAddress">Please provide a valid email address.</div>
               </div>
 
 
               <div class="input-group no-border input-lg">
                 <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="now-ui-icons ui-1_lock-circle-open"></i>
-                                        </span>
+                <span class="input-group-text"><i class="now-ui-icons ui-1_lock-circle-open"></i></span>
                 </div>
                 <input type="password" class="form-control" placeholder="Password"
                        :class="[formErrors.password ? 'is-invalid' : '']"
                        v-model.trim="formData.password"
                        autocomplete="current-password">
-                <div class="invalid-feedback" v-if="formErrors.password">Please enter your
-                  password.
-                </div>
+                <div class="invalid-feedback" v-if="formErrors.password">Please enter your password.</div>
               </div>
+              * All fields are mandatory
             </div>
 
             <p class="text-danger" v-if="cloudError==='badCombo'">
-              <small>The credentials you entered are not associated with an account. Please check
-                your email
-                and/or password and try again.
+              <small>
+                The credentials you entered are not associated with an account. Please check your email and/or password and try again.
               </small>
             </p>
             <p class="text-danger" v-else-if="cloudError">
-              <small>An error occured while processing your request. Please check your information
-                and try again,
-                or <a href="/contact">contact support</a> if the error persists.
+              <small>
+                An error occured while processing your request. Please check your information and try again, or <a href="/contact">contact support</a> if the error persists.
               </small>
             </p>
-            <p class="text-success text-center" v-if="cloudSuccess && !cloudError">You are being
-              logged in. Please be patient.</p>
+            <p class="text-success text-center" v-if="cloudSuccess && !cloudError">
+              You are being logged in. Please be patient.
+            </p>
 
             <div class="card-footer text-center">
-              <ajax-button :syncing="syncing" class="btn btn-primary btn-round btn-lg btn-block">Login
-              </ajax-button>
-
+              <ajax-button :syncing="syncing" class="btn btn-primary btn-round btn-lg btn-block">Login</ajax-button>
 
               <div class="text-center">
                 <h6>
-                  <a href="/signup" class="link text-center">register now</a>
+                  <a href="/signup" class="link text-center">Register now</a>
                 </h6>
               </div>
-              <!-- <div class="pull-right">
-                <h6>
-                  <a href="#pablo" class="link">Need Help?</a>
-                </h6>
-              </div> -->
             </div>
 
           </ajax-form>
