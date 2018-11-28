@@ -18,7 +18,7 @@ module.exports = {
 
   fn: async function () {
 
-    let user = this.req.me
+    let user = this.req.me;
 
     if (user == null) {
       throw {
