@@ -1,55 +1,56 @@
 <div id="user-ideas" v-cloak>
   <div class="main-panel">
-      <div class="content">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title"> <%= user.firstName %> <%= user.lastName %> ideas</h4>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                      <th>
-                        <strong>Name</strong>
-                      </th>
-                      <th>
-                        <strong>Subtitle</strong>
-                      </th>
-                      <th>
-                        <strong>Description</strong>
-                      </th>
-                      <th class="text-right">
-                        <strong>Notes</strong>
-                      </th>
-                    </thead>
-                    <tbody>
-                      <% _.each(ideas, function (idea) { %>
-                      <tr>
-                        <td>
-                          <a href="#"><%= idea.title %></a>
-                        </td>
-                        <td>
-                          <%= idea.subtitle %>
-                        </td>
-                        <td>
-                          <%= idea.description %>
-                        </td>
-                        <td class="text-right">
-                          <%= idea.notes %>
-                        </td>
-                      </tr>
-                      <% }) %>
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title"> <%= user.firstName %> <%= user.lastName %> ideas</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class=" text-primary">
+                  <th>
+                    <strong>Name</strong>
+                  </th>
+                  <th>
+                    <strong>Subtitle</strong>
+                  </th>
+                  <th>
+                    <strong>Description</strong>
+                  </th>
+                  <th class="text-right">
+                    <strong>Notes</strong>
+                  </th>
+                  </thead>
+                  <tbody>
+                  <% _.each(ideas, function (idea) { %>
+                    <tr>
+                      <td>
+                        <a href="#"><%= idea.title %></a>
+                      </td>
+                      <td>
+                        <%= idea.subtitle %>
+                      </td>
+                      <td>
+                        <%= idea.description %>
+                      </td>
+                      <td class="text-right">
+                        <%= idea.notes %>
+                      </td>
+                    </tr>
+                  <% }) %>
 
-                    </tbody>
-                  </table>
-                </div>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
+        <a href="/new/idea" class="col-md-4 btn btn-primary btn-round btn-lg btn-block">Create new idea</a>
       </div>
+    </div>
   </div>
 </div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
