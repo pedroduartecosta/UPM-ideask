@@ -1,17 +1,31 @@
 <div id="user-ideas" v-cloak>
+  <div class="main-panel">
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"> <%= user.firstName %> <%= user.lastName %> ideas</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <% _.each(ideas, function (idea) { %>
+                      <p>
+                          <h5><%= idea.title %></h5>
+                          <div>Subtitle: <%= idea.subtitle %></div>
+                          <div>Description: <%= idea.description %></div>
+                          <div>Notes: <%= idea.notes %></div>
+                      </p>
 
-  <h1>Ideas of <%= user.firstName %> <%= user.lastName %></h1>
-
-
-  <% _.each(ideas, function (idea) { %>
-    <p>
-        <h5><%= idea.title %></h5>
-        <div>Subtitle: <%= idea.subtitle %></div>
-        <div>Description: <%= idea.description %></div>
-        <div>Notes: <%= idea.notes %></div>
-    </p>
-    
-  <% }) %>
-
+                    <% }) %>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
 </div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

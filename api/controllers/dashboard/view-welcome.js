@@ -16,6 +16,10 @@ module.exports = {
 
   },
 
+  welcome: function (req, res) {
+  res.view('pages/dashboard/welcome', {layout: 'layouts/layout-ideas'})
+  },
+
 
   fn: async function () {
 
