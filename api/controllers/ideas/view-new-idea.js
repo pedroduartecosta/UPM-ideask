@@ -18,8 +18,17 @@ module.exports = {
 
   fn: async function () {
 
-    // Respond with view.
-    return {};
+    let user = this.req.me
+
+    if (user == null) {
+      throw {
+        redirect: '/'
+      };
+    }
+
+    return {
+      user: user
+    };
 
   }
 

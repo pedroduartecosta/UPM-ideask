@@ -17,13 +17,23 @@ module.exports = {
   },
 
   welcome: function (req, res) {
-  res.view('pages/dashboard/welcome', {layout: 'layouts/layout-ideas'})
+    res.view('pages/dashboard/welcome', {layout: 'layouts/layout-ideas'})
   },
 
 
   fn: async function () {
 
-    return {};
+    let user = this.req.me
+
+    if (user == null) {
+      throw {
+        redirect: '/'
+      };
+    }
+
+    return {
+      user: user
+    };
 
   }
 
