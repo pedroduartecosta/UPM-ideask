@@ -1,0 +1,36 @@
+
+<div id="edit-idea" v-cloak>
+  <div class="container" v-if="!cloudSuccess">
+    <h1 class="text-center">Edit your idea</h1>
+    <div class="idea-form">
+      <hr/>
+      <ajax-form action="edit-idea" :syncing.sync="syncing" :cloud-error.sync="cloudError" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input class="form-control" id="title" type="text"  :class="[formErrors.title ? 'is-invalid' : '']" v-model.trim="idea.title" placeholder="Appealing title" value="idea.title" autocomplete="name" focus-first>
+          <div class="invalid-feedback" v-if="formErrors.idea">Please provide a title for your idea.</div>
+        </div>
+        <div class="form-group">
+          <label for="subtitle">Subtitle</label>
+          <input class="form-control" id="subtitle" type="text"  :class="[formErrors.subtitle ? 'is-invalid' : '']" v-model.trim="idea.subtitle" placeholder="Appealing subtitle" autocomplete="name">
+          <div class="invalid-feedback" v-if="formErrors.idea">Please provide a subtitle for your idea.</div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input class="form-control" id="description" type="textarea"  :class="[formErrors.description ? 'is-invalid' : '']" v-model.trim="idea.description" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="notes">Notes</label>
+          <input class="form-control" id="notes" type="textarea"  :class="[formErrors.notes ? 'is-invalid' : '']" v-model.trim="idea.notes" placeholder="">
+        </div>
+        <div class="form-group">
+          <ajax-button type="submit" :syncing="syncing" class="btn-dark btn-lg btn-block">Edit</ajax-button>
+        </div>
+      </ajax-form>
+    </div>
+  </div>
+  <div class="container" v-if="cloudSuccess">
+    <h1 class="text-center">Congrats! You changed your idea.</h1>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

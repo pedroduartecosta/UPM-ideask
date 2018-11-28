@@ -38,6 +38,10 @@ module.exports.routes = {
 
   'GET /users/:id?/ideas':    { action: 'ideas/view-user-ideas' },
 
+  'GET /ideas/:id/edit':      { action: 'ideas/view-edit-idea' },
+
+  'GET /ideas/:id/test':      { action: 'ideas/view-edit-idea' }, //TODO: Remove after testing
+
   //  ╔╦╗╦╔═╗╔═╗  ╦═╗╔═╗╔╦╗╦╦═╗╔═╗╔═╗╔╦╗╔═╗   ┬   ╔╦╗╔═╗╦ ╦╔╗╔╦  ╔═╗╔═╗╔╦╗╔═╗
   //  ║║║║╚═╗║    ╠╦╝║╣  ║║║╠╦╝║╣ ║   ║ ╚═╗  ┌┼─   ║║║ ║║║║║║║║  ║ ║╠═╣ ║║╚═╗
   //  ╩ ╩╩╚═╝╚═╝  ╩╚═╚═╝═╩╝╩╩╚═╚═╝╚═╝ ╩ ╚═╝  └┘   ═╩╝╚═╝╚╩╝╝╚╝╩═╝╚═╝╩ ╩═╩╝╚═╝
