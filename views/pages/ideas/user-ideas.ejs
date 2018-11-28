@@ -10,15 +10,39 @@
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
-                    <% _.each(ideas, function (idea) { %>
-                      <p>
-                          <h5><%= idea.title %></h5>
-                          <div>Subtitle: <%= idea.subtitle %></div>
-                          <div>Description: <%= idea.description %></div>
-                          <div>Notes: <%= idea.notes %></div>
-                      </p>
+                    <thead class=" text-primary">
+                      <th>
+                        <strong>Name</strong>
+                      </th>
+                      <th>
+                        <strong>Subtitle</strong>
+                      </th>
+                      <th>
+                        <strong>Description</strong>
+                      </th>
+                      <th class="text-right">
+                        <strong>Notes</strong>
+                      </th>
+                    </thead>
+                    <tbody>
+                      <% _.each(ideas, function (idea) { %>
+                      <tr>
+                        <td>
+                          <a href="#"><%= idea.title %></a>
+                        </td>
+                        <td>
+                          <%= idea.subtitle %>
+                        </td>
+                        <td>
+                          <%= idea.description %>
+                        </td>
+                        <td class="text-right">
+                          <%= idea.notes %>
+                        </td>
+                      </tr>
+                      <% }) %>
 
-                    <% }) %>
+                    </tbody>
                   </table>
                 </div>
               </div>
