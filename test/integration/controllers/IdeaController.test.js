@@ -196,8 +196,9 @@ describe('IdeaController', function () {
     it('should succeed for own idea and valid input', async () => {
 
       //act
-      await agent.put(`/api/v1/ideas/` + firstIdeaModel.id)
+      await agent.put(`/api/v1/ideas/edit-idea`)
                         .send({
+                          id: firstIdeaModel.id,
                           title: editedIdea.title,
                           subtitle: editedIdea.subtitle,
                           description: editedIdea.description,
@@ -215,12 +216,9 @@ describe('IdeaController', function () {
     it('should fail for own idea but invalid input', async () => {
 
       //act
-      await agent.put(`/api/v1/ideas/` + firstIdeaModel.id)
+      await agent.put(`/api/v1/ideas/edit-idea`)
                   .send({
-                    title: editedIdea.title,
-                    subtitle: editedIdea.subtitle,
-                    description: editedIdea.description,
-                    notes: editedIdea.notes
+                    
                   })
                   .expect(400)
 
@@ -235,14 +233,15 @@ describe('IdeaController', function () {
     it('should fail for someone elses idea and valid input', async () => {
 
       //act
-      await agent.put(`/api/v1/ideas/` + secondIdeaModel.id)
+      await agent.put(`/api/v1/ideas/edit-idea`)
                         .send({
+                          id: secondIdeaModel.id,
                           title: editedIdea.title,
                           subtitle: editedIdea.subtitle,
                           description: editedIdea.description,
                           notes: editedIdea.notes
                         })
-                        .expect(400)
+                        .expect(403)
 
       //assert
       const idea = await Idea.findOne({id: firstIdeaModel.id})

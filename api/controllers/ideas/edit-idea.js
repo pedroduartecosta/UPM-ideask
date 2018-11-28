@@ -55,7 +55,8 @@ module.exports = {
 
     notAuthorized: {
       description: 'Not authorized to edit this idea',
-      responseType: 'redirect'
+      responseType: 'forbidden',
+      statusCode: 403
     }
 
   },
@@ -74,7 +75,7 @@ module.exports = {
 
     //check if the user is authorized to edit it
     if (idea.owner.toString() !== userId) {
-      return exits.notAuthorized('/')
+      return exits.notAuthorized()
     }
 
     //update the idea
