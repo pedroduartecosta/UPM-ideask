@@ -35,7 +35,8 @@ describe('IdeaController', function () {
 
   var agent = undefined
   var user = undefined
-
+  var idea = undefined
+  
   this.beforeAll(async () => {
     //clean database before testing
 
@@ -85,6 +86,40 @@ describe('IdeaController', function () {
       return await agent
         .post('/api/v1/ideas/new-idea')
         .send(invalidIdea)
+        .expect(400)
+    })
+
+
+  }),
+
+  describe('Delete idea', () => {
+
+    this.beforeAll(async () => {
+
+      await Idea.destroy({}).fetch()
+
+      idea = await Idea.create({ 
+        title: validIdea.title,
+        subtitle: validIdea.subtitle,
+        description: validIdea.description,
+        notes: validIdea.notes
+      }).fetch()
+    }),
+
+    it('should succeed for existing idea', async () => {
+
+      //act assert
+      return await agent
+        .post('/api/v1/ideas/delete')
+        .send({id: idea.id})
+        .expect(200)
+    }),
+
+    it('should fail for already deleted idea', async () => {
+      // act assert
+      return await agent
+        .post('/api/v1/ideas/delete')
+        .send({id: idea.id})
         .expect(400)
     })
 
