@@ -8,50 +8,51 @@
               <h4 class="card-title"> <%= user.firstName %> <%= user.lastName %> ideas</h4>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead class=" text-primary">
-                  <th>
+              <table class="table table-responsive">
+                <thead class=" text-primary">
+                <tr class="d-flex">
+                  <th class="col-md-2">
                     <strong>Name</strong>
                   </th>
-                  <th>
+                  <th class="col-md-2">
                     <strong>Subtitle</strong>
                   </th>
-                  <th>
+                  <th class="col-md-3">
                     <strong>Description</strong>
                   </th>
-                  <th class="text-right">
+                  <th class="col-md-3">
                     <strong>Notes</strong>
                   </th>
-                  </thead>
-                  <tbody>
-                  <% _.each(ideas, function (idea) { %>
-                    <tr>
-                      <td>
-                        <a href="#"><%= idea.title %></a>
-                      </td>
-                      <td>
-                        <%= idea.subtitle %>
-                      </td>
-                      <td>
-                        <%= idea.description %>
-                      </td>
-                      <td class="text-right">
-                        <%= idea.notes %>
-                      </td>
-                      <td class="text-right">
-                        <a href="/ideas/<%= idea.id %>/edit" type="submit" class="btn btn-default"> Edit</a>
-                        <a href="/api/v1/ideas/<%= idea.id %>/delete" class="btn btn-danger"> Delete</a>
-                        <!-- <form class="d-inline" action="deleteIdea" method="delete">
-                          <input type="submit" value="Delete" class="btn btn-danger">
-                        </form> -->
-                      </td>
-                    </tr>
-                  <% }) %>
+                </tr>
+                </thead>
+                <tbody>
+                <% _.each(ideas, function (idea) { %>
+                  <tr class="d-flex">
+                    <td class="col-md-2">
+                      <a href="#"><%= idea.title %></a>
+                    </td>
+                    <td class="col-md-2">
+                      <%= idea.subtitle %>
+                    </td>
+                    <td class="col-md-3">
+                      <%= idea.description %>
+                    </td>
+                    <td class="col-md-3">
+                      <%= idea.notes %>
+                    </td>
+                    <td class="text-right col-md-2">
+                      <a href="/ideas/<%= idea.id %>/edit" type="submit" class="btn btn-default btn-sm col-md-4">
+                        Edit</a>
+                      <a href="/api/v1/ideas/<%= idea.id %>/delete" class="btn btn-danger btn-sm col-md-4"> Delete</a>
+                      <!-- <form class="d-inline" action="deleteIdea" method="delete">
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                      </form> -->
+                    </td>
+                  </tr>
+                <% }) %>
 
-                  </tbody>
-                </table>
-              </div>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
