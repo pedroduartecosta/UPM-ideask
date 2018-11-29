@@ -43,10 +43,24 @@
                     <td class="text-right col-md-2">
                       <a href="/ideas/<%= idea.id %>/edit" type="submit" class="btn btn-default btn-sm col-md-4">
                         Edit</a>
-                      <a href="/api/v1/ideas/<%= idea.id %>/delete" class="btn btn-danger btn-sm col-md-4"> Delete</a>
-                      <!-- <form class="d-inline" action="deleteIdea" method="delete">
-                        <input type="submit" value="Delete" class="btn btn-danger">
-                      </form> -->
+                      <a  class="btn btn-danger btn-sm col-md-4" data-toggle="modal" data-target="#deletemodal"> Delete</a>
+
+                      <!-- Mini Modal -->
+                      <div class="modal fade modal-mini modal-primary" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-body">
+                              <p>Do you really want to delete this?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <a href="/api/v1/ideas/<%= idea.id %>/delete"><button type="button" class="btn btn-link btn-neutral">Yes</button></a>
+                              <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">No</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--  End Modal -->
+
                     </td>
                   </tr>
                 <% }) %>
