@@ -27,7 +27,7 @@ module.exports = {
 
     if (user == null) {
       throw {
-        redirect: '/'
+        redirect: '/welcome'
       };
     }
 

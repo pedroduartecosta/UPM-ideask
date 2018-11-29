@@ -20,10 +20,8 @@ module.exports = {
 
     let user = this.req.me;
 
-    if (user == null) {
-      throw {
-        redirect: '/'
-      };
+    if (user === null) {
+      throw {redirect: '/welcome'};
     }
 
     return {

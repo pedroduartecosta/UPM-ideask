@@ -38,7 +38,7 @@ parasails.registerPage('idea', {
     submittedForm: async function() {
       this.cloudSuccess = true;
       this.syncing = true;
-      window.location = '/';
+      window.location = '/users/ideas';
     },
 
     handleParsingForm: function() {
