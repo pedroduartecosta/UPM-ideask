@@ -48,48 +48,20 @@
           <% if(me) { %>
 
           <!-- Only in desktop nav -->
-          <div class="wrapper ">
-          <div class="sidebar" data-color="orange">
-            <div class="logo">
-              <a href="#" class="simple-text logo-mini">
-              </a>
-              <a href="#" class="simple-text logo-normal">
-                <img src="/images/ideask-logo.png" alt="" width="70%">
-              </a>
-            </div>
-            <div class="sidebar-wrapper">
-              <ul class="nav">
-                <li>
-                  <a href="/idea">
-                    <i class="now-ui-icons design_app"></i>
-                    <p>Home</p>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="now-ui-icons ui-1_bell-53"></i>
-                    <p>Notifications</p>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="now-ui-icons users_single-02"></i>
-                    <p>Profile</p>
-                  </a>
-                </li>
-                <li>
-                  <a href="/users/ideas">
-                    <i class="now-ui-icons business_bulb-63"></i>
-                    <p>Ideas</p>
-                  </a>
-                </li>
-                <li class="active-pro">
-                  <a href="/logout">
-                    <i class="now-ui-icons ui-1_settings-gear-63"></i>
-                    <p>Configuration</p>
-                  </a>
-                </li>
-              </ul>
+          <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/users/ideas">My Ideas</a>
+          <div class="nav-item dropdown d-none d-sm-block">
+            <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Logout</a>
+            <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
+              <div class="dropdown-item">Do you really want to log out?</div>
+              <a class="dropdown-item" href="/logout">Yes</a>
+              <div class="dropdown-item">No</div>
+          </div>
+
+          <!-- <div class="nav-item dropdown d-none d-sm-block">
+            <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+            <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
+              <a class="dropdown-item" href="/account">Settings</a>
+              <a class="dropdown-item" href="/logout">Sign out</a>
             </div>
           </div>
 
