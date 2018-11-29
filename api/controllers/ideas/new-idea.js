@@ -57,7 +57,7 @@ module.exports = {
 
     setTimeout(function () {
       return exits.success();
-    }, 4000);
+    }, 2000);
   }
 
 };
