@@ -54,8 +54,9 @@ module.exports = {
     })
     .fetch();
 
-    return exits.success();
-
+    setTimeout(function () {
+      return exits.success();
+    }, 4000);
   }
 
 };
