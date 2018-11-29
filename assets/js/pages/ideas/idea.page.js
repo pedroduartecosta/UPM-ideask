@@ -45,7 +45,7 @@ parasails.registerPage('idea', {
       // Clear out any pre-existing error messages.
       this.formErrors = {};
 
-      var argins = this.idea;
+      var argins = this.formData;
 
       if(!argins.title) {
         this.formErrors.title = true;

@@ -57,7 +57,8 @@ module.exports = {
 
     // Respond with view.
     return exits.success({
-      idea: idea
+      user: this.req.me,
+      formData: idea
     })
 
   }

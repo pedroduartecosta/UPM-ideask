@@ -40,12 +40,10 @@
                         <%= idea.notes %>
                       </td>
                       <td class="text-right">
-                        <button type="button" class="btn btn-default">
-                          <span class="now-ui-icons text_caps-small" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger">
-                          <span class="now-ui-icons ui-1_simple-remove" aria-hidden="true"></span>
-                        </button>
+                        <a href="/ideas/<%= idea.id %>/edit" type="submit" class="btn btn-default"> Edit</a>
+                        <form class="d-inline" action="/deleteIdea" method="post">
+                          <input type="submit" value="Delete" class="btn btn-danger">
+                        </form>
                       </td>
                     </tr>
                   <% }) %>
