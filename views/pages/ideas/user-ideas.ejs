@@ -41,9 +41,10 @@
                       </td>
                       <td class="text-right">
                         <a href="/ideas/<%= idea.id %>/edit" type="submit" class="btn btn-default"> Edit</a>
-                        <form class="d-inline" action="/deleteIdea" method="post">
+                        <a href="/api/v1/ideas/<%= idea.id %>/delete" class="btn btn-danger"> Delete</a>
+                        <!-- <form class="d-inline" action="deleteIdea" method="delete">
                           <input type="submit" value="Delete" class="btn btn-danger">
-                        </form>
+                        </form> -->
                       </td>
                     </tr>
                   <% }) %>
