@@ -40,6 +40,7 @@ parasails.registerPage('idea', {
       this.syncing = true;
       window.location = '/';
     },
+    
 
     handleParsingForm: function() {
       // Clear out any pre-existing error messages.
