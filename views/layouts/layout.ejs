@@ -106,9 +106,9 @@
                 </div>
                 <% if(locals.user){ %>
                   <a class="navbar-brand" href="#"><%= user.firstName %> <%= user.lastName %></a>
-                <% } else{ %>  
+                <% } else{ %>
                   <a class="navbar-brand" href="#"></a>
-               <% } %>                
+               <% } %>
               </div>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -125,7 +125,7 @@
                 </form>
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a class="nav-link" href="/logout">
+                    <a class="nav-link" data-toggle="modal" data-target="#logoutmodal">
                       <i class="now-ui-icons media-1_button-power"></i>
                       <p>
                         <span class="d-lg-none d-md-block">Logout</span>
@@ -138,6 +138,27 @@
           </nav>
           <div class="panel-header panel-header-sm"></div>
           </div>
+
+          <!-- Mini Modal -->
+          <div class="modal fade modal-mini modal-primary" id="logoutmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                  <div class="modal-profile">
+                    <i class="now-ui-icons users_circle-08"></i>
+                  </div>
+                </div>
+                <div class="modal-body">
+                  <p>Do you really want to log out?</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="/logout"><button type="button" class="btn btn-link btn-neutral">Yes</button></a>
+                  <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  End Modal -->
 
 
           <% } else { %>
