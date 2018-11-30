@@ -1,22 +1,23 @@
 module.exports = {
 
 
-  friendlyName: 'Edit idea',
+  friendlyName: 'Delete idea',
 
 
-  description: 'Edit Idea page.',
+  description: 'Delete Idea page.',
 
   inputs: {
-    id: {
-      type: 'string',
-      required: true,
-    }
+    // id: {
+    //   type: 'string',
+    //   required: true,
+    // }
   },
 
   exits: {
 
     success: {
-      description: 'New idea was created successfully.'
+      description: 'Idea was deleted successfully.',
+      responseType: 'redirect'
     },
 
     invalid: {
@@ -28,10 +29,12 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    var removedIdea = await Idea.destroyOne({id: inputs.id});
+    const id = this.req.param('id')
+
+    var removedIdea = await Idea.destroyOne({id: id});
 
     if (removedIdea) {
-      return exits.success();
+      return exits.success('/users/ideas');
     } else {
       return exits.invalid();
     }

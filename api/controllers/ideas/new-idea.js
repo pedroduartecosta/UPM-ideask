@@ -41,6 +41,12 @@ module.exports = {
       responseType: 'badRequest'
     },
 
+    redirect: {
+      description:  'New idea was created successfully.',
+      responseType: 'redirect'
+    }
+
+
   },
 
 
@@ -55,9 +61,9 @@ module.exports = {
     })
     .fetch();
 
-    setTimeout(function () {
-      return exits.success();
-    }, 2000);
+    throw {redirect: '/users/ideas'};
+
+
   }
 
 };

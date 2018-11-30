@@ -8,51 +8,65 @@
               <h4 class="card-title"> <%= user.firstName %> <%= user.lastName %> ideas</h4>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead class=" text-primary">
-                  <th>
+              <table class="table table-responsive">
+                <thead class=" text-primary">
+                <tr class="d-flex">
+                  <th class="col-md-2">
                     <strong>Name</strong>
                   </th>
-                  <th>
+                  <th class="col-md-2">
                     <strong>Subtitle</strong>
                   </th>
-                  <th>
+                  <th class="col-md-3">
                     <strong>Description</strong>
                   </th>
-                  <th class="text-right">
+                  <th class="col-md-3">
                     <strong>Notes</strong>
                   </th>
-                  </thead>
-                  <tbody>
-                  <% _.each(ideas, function (idea) { %>
-                    <tr>
-                      <td>
-                        <a href="#"><%= idea.title %></a>
-                      </td>
-                      <td>
-                        <%= idea.subtitle %>
-                      </td>
-                      <td>
-                        <%= idea.description %>
-                      </td>
-                      <td class="text-right">
-                        <%= idea.notes %>
-                      </td>
-                      <td class="text-right">
-                        <button type="button" class="btn btn-default">
-                          <span class="now-ui-icons text_caps-small" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger">
-                          <span class="now-ui-icons ui-1_simple-remove" aria-hidden="true"></span>
-                        </button>
-                      </td>
-                    </tr>
-                  <% }) %>
+                </tr>
+                </thead>
+                <tbody>
+                <% _.each(ideas, function (idea) { %>
+                  <tr class="d-flex">
+                    <td class="col-md-2">
+                      <a href="#"><%= idea.title %></a>
+                    </td>
+                    <td class="col-md-2">
+                      <%= idea.subtitle %>
+                    </td>
+                    <td class="col-md-3">
+                      <%= idea.description %>
+                    </td>
+                    <td class="col-md-3">
+                      <%= idea.notes %>
+                    </td>
+                    <td class="text-right col-md-2">
+                      <a href="/ideas/<%= idea.id %>/edit" type="submit" class="btn btn-default btn-sm col-md-4">
+                        Edit</a>
+                      <a  class="btn btn-danger btn-sm col-md-4" data-toggle="modal" data-target="#deletemodal"> Delete</a>
 
-                  </tbody>
-                </table>
-              </div>
+                      <!-- Mini Modal -->
+                      <div class="modal fade modal-mini modal-primary" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-body">
+                              <p>Do you really want to delete this?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <a href="/api/v1/ideas/<%= idea.id %>/delete"><button type="button" class="btn btn-link btn-neutral">Yes</button></a>
+                              <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">No</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--  End Modal -->
+
+                    </td>
+                  </tr>
+                <% }) %>
+
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

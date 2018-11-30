@@ -68,7 +68,8 @@ module.exports.routes = {
   'POST  /api/v1/entrance/update-password-and-login':    { action: 'entrance/update-password-and-login' },
   'POST  /api/v1/deliver-contact-form-message':          { action: 'deliver-contact-form-message' },
   'POST  /api/v1/ideas/new-idea':                     { action: 'ideas/new-idea' },
-  'POST  /api/v1/ideas/delete':                     { action: 'ideas/delete-idea' },
+  
+  'GET  /api/v1/ideas/:id/delete':                     { action: 'ideas/delete-idea' },
 
   'PUT /api/v1/ideas/edit-idea': { action: 'ideas/edit-idea' },
 

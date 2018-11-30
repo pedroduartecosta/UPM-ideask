@@ -38,7 +38,7 @@ parasails.registerPage('idea', {
     submittedForm: async function() {
       this.cloudSuccess = true;
       this.syncing = true;
-      window.location = '/';
+      window.location = '/users/ideas';
     },
     
 
@@ -46,7 +46,7 @@ parasails.registerPage('idea', {
       // Clear out any pre-existing error messages.
       this.formErrors = {};
 
-      var argins = this.idea;
+      var argins = this.formData;
 
       if(!argins.title) {
         this.formErrors.title = true;
