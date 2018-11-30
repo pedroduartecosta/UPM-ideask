@@ -50,12 +50,14 @@ module.exports = {
       title: inputs.title,
       subtitle: inputs.subtitle,
       description: inputs.description,
-      notes: inputs.notes
+      notes: inputs.notes,
+      owner: this.req.me.id
     })
     .fetch();
 
-    return exits.success();
-
+    setTimeout(function () {
+      return exits.success();
+    }, 2000);
   }
 
 };

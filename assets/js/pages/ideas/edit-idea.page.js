@@ -1,10 +1,11 @@
-parasails.registerPage('idea', {
+parasails.registerPage('edit-idea', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
     // Form data
-    formData: { /* … */ },
+
+    idea: { },
 
     // For tracking client-side validation errors in our form.
     // > Has property set to `true` for each invalid property in `formData`.
@@ -40,7 +41,6 @@ parasails.registerPage('idea', {
       this.syncing = true;
       window.location = '/';
     },
-    
 
     handleParsingForm: function() {
       // Clear out any pre-existing error messages.
