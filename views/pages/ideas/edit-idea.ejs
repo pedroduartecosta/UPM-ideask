@@ -63,6 +63,7 @@
                              v-model.trim="formData.notes" placeholder="">
                       <div class="invalid-feedback" v-if="formErrors.notes">Please provide a title for your idea.</div>
                     </div>
+                    * All fields are mandatory
                     <div class="form-group col-md-12">
                       <div class="row">
                         <ajax-button type="submit" :syncing="syncing"
