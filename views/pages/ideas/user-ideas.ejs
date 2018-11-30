@@ -8,39 +8,31 @@
               <h4 class="card-title"> <%= user.firstName %> <%= user.lastName %> ideas</h4>
             </div>
             <div class="card-body">
-              <table class="table table-responsive">
-                <thead class=" text-primary">
-                <tr class="d-flex">
-                  <th class="col-md-2">
-                    <strong>Name</strong>
-                  </th>
-                  <th class="col-md-2">
-                    <strong>Subtitle</strong>
-                  </th>
-                  <th class="col-md-3">
-                    <strong>Description</strong>
-                  </th>
-                  <th class="col-md-3">
-                    <strong>Notes</strong>
-                  </th>
-                </tr>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col"><strong>Name</strong></th>
+                    <th scope="col"><strong>Subtitle</strong></th>
+                    <th scope="col"><strong>Description</strong></th>
+                    <th scope="col"><strong>Notes</strong></th>
+                  </tr>
                 </thead>
                 <tbody>
                 <% _.each(ideas, function (idea) { %>
-                  <tr class="d-flex">
-                    <td class="col-md-2">
+                  <tr>
+                    <td>
                       <a href="#"><%= idea.title %></a>
                     </td>
-                    <td class="col-md-2">
+                    <td>
                       <%= idea.subtitle %>
                     </td>
-                    <td class="col-md-3">
+                    <td>
                       <%= idea.description %>
                     </td>
-                    <td class="col-md-3">
+                    <td>
                       <%= idea.notes %>
                     </td>
-                    <td class="text-right col-md-2">
+                    <td class="text-right">
                       <a href="/ideas/<%= idea.id %>/edit" type="submit" class="btn btn-default btn-sm col-md-4">
                         Edit</a>
                       <a  class="btn btn-danger btn-sm col-md-4" data-toggle="modal" data-target="#deletemodal"> Delete</a>
@@ -64,7 +56,6 @@
                     </td>
                   </tr>
                 <% }) %>
-
                 </tbody>
               </table>
             </div>
