@@ -38,7 +38,7 @@ module.exports = {
 
 
     //look up ideas of the specified user
-    const ideas = await Idea.find().populate('owner')
+    const ideas = await Idea.find().populate('owner').populate('upvoters').populate('downvoters')
 
     if (!ideas) {
       sails.log.info(`Could not find any ideas`)

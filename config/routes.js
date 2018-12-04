@@ -75,4 +75,7 @@ module.exports.routes = {
 
   'PUT /api/v1/ideas/edit-idea': { action: 'ideas/edit-idea' },
 
+  'GET /api/v1/ideas/:id/upvote':                      { action: 'ideas/upvote-idea' },
+  'GET /api/v1/ideas/:id/downvote':                      { action: 'ideas/downvote-idea' }
+
 };
