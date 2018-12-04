@@ -183,6 +183,38 @@ describe('IdeaController', function () {
 
   }),
 
+  describe('List all ideas', () => {
+
+    this.beforeAll(async () => {
+
+      await Idea.create({
+        title: validIdea.title,
+        subtitle: validIdea.subtitle,
+        description: validIdea.description,
+        notes: validIdea.notes,
+        owner: user.id
+      })
+
+      return await Idea.create({
+        title: secondValidIdea.title,
+        subtitle: secondValidIdea.subtitle,
+        description: secondValidIdea.description,
+        notes: secondValidIdea.notes,
+        owner: user.id
+      })
+    }),
+
+
+    it('should succeed', async () => {
+
+      return await agent
+          .get('/ideas')
+          .expect(200)
+
+    })
+
+  }),
+
   describe('Edit ideas', () => {
 
     var firstIdeaModel = undefined
