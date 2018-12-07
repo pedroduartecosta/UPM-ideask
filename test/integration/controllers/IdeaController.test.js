@@ -47,6 +47,10 @@ const invalidIdea = {
   description: "Idea description"
 }
 
+const validComment = {
+  content: 'Awesome idea, keep up!',
+}
+
 describe('IdeaController', function () {
 
   var agent = undefined
@@ -282,6 +286,53 @@ describe('IdeaController', function () {
       const idea = await Idea.findOne({id: firstIdeaModel.id})
       expect(idea).to.containSubset(validIdea)
       
+      return
+    })
+
+  }),
+
+  describe('Comment ideas', () => {
+
+    var comment = undefined
+
+
+    this.beforeAll(async () => {
+
+    }),
+
+    this.beforeEach(async () => {
+
+    }),
+
+    it('should succeed for commenting on an idea and valid input', async () => {
+
+      //act
+      await agent.put(`/api/v1/ideas/comment-idea`)
+                        .send({
+                          content: editedIdea.title,
+                          idea: firstIdeaModel.id,
+                          owner: user.id,
+                          timestamp: Date().toString()
+                        })
+                        .expect(200)
+
+      //assert
+      return
+    }),
+
+    it('should fail for different user from the loggedin one', async () => {
+
+      //act
+      await agent.put(`/api/v1/ideas/comment-idea`)
+                        .send({
+                          content: editedIdea.title,
+                          idea: firstIdeaModel.id,
+                          owner: secondUser.id,
+                          timestamp: Date().toString()
+                        })
+                        .expect(401)
+
+      //assert
       return
     })
 
