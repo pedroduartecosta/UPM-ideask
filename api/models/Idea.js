@@ -58,7 +58,7 @@ module.exports = {
 
     comments: {
       collection: 'comment',
-      via: 'idea'
+      via: 'idea',
     }
 
   },
