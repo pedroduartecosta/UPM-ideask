@@ -58,7 +58,6 @@ module.exports = {
       owner: this.req.me.id
     }).fetch();
 
-
     if (newCommentRecord) {
       sails.log.info(`successfully commented idea ${inputs.idea}`)
       return exits.success()
