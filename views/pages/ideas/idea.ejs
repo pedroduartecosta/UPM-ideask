@@ -1,6 +1,35 @@
-<div id="idea" v-cloak>
+<div id="all-ideas" v-cloak>
+  <div class="main-panel">
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title"><%= idea.title %></h4>
+            </div>
+            <div class="card-body">
+              <p><%= idea.subtitle %></p>
+              <p><%= idea.description %></p>
+              <p><%= idea.notes %></p>
+
+              <h5>Comments</h5>
+              <% _.each(idea.comments, function (comment) { %>
+                <tr>
+                  <%= comment.id %>
+                </tr>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div id="idea" v-cloak>
   <div class="container">
 
   </div>
 </div>
-<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %> -->

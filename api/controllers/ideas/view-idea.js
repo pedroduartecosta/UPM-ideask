@@ -16,7 +16,7 @@ module.exports = {
   },
 
 
-  fn: async function () {
+  fn: async function (inputs, exits) {
 
     //get idea id from path
     let ideaId = this.req.param('id')

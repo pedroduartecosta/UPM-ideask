@@ -56,6 +56,17 @@ module.exports = {
       model: 'user'
     },
 
+    // Add a reference to Pets
+    upvoters: {
+      collection: 'user',
+      via: 'upvotes'
+    },
+
+    downvoters: {
+      collection: 'user',
+      via: 'downvotes'
+    },
+    
     comments: {
       collection: 'comment',
       via: 'idea',

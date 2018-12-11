@@ -1,16 +1,17 @@
-<div id="user-ideas" v-cloak>
+<div id="all-ideas" v-cloak>
   <div class="main-panel">
     <div class="content">
       <div class="row">
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h4 class="card-title"> <%= user.firstName %> <%= user.lastName %> ideas</h4>
+              <h4 class="card-title"> All on Ideask</h4>
             </div>
             <div class="card-body">
             <table class="table">
                 <thead>
                   <tr>
+                    <th scope="col"><strong>Author</strong></th>
                     <th scope="col"><strong>Name</strong></th>
                     <th scope="col"><strong>Subtitle</strong></th>
                     <th scope="col"><strong>Description</strong></th>
@@ -22,6 +23,9 @@
                 <tbody>
                 <% _.each(ideas, function (idea) { %>
                   <tr>
+                    <td>
+                      <a href="/users/<%= idea.owner.id%>/ideas"><%= idea.owner.firstName %> <%= idea.owner.lastName %></a>
+                    </td>
                     <td>
                       <a href="/ideas/<%= idea.id%>"><%= idea.title %></a>
                     </td>
@@ -35,17 +39,21 @@
                       <%= idea.notes %>
                     </td>
                     <td>
-                        <%= idea.upvoters.length %>
-                      </td>
-                      <td>
-                          <%= idea.downvoters.length %>
-                      </td>
+                      <%= idea.upvoters.length %>
+                    </td>
+                    <td>
+                        <%= idea.downvoters.length %>
+                    </td>
                     <td class="text-right">
+                        <a  class="btn btn-neutral btn-sm col-md-4" href="/api/v1/ideas/<%= idea.id %>/upvote">Upvote</a>
+                        <a  class="btn btn-neutral btn-sm col-md-4" href="/api/v1/ideas/<%= idea.id %>/downvote">Downvote</a>
+                    </td>
+
+                    <!-- <td class="text-right">
                       <a href="/ideas/<%= idea.id %>/edit" type="submit" class="btn btn-default btn-sm col-md-4">
                         Edit</a>
                       <a  class="btn btn-danger btn-sm col-md-4" data-toggle="modal" data-target="#deletemodal"> Delete</a>
 
-                      <!-- Mini Modal -->
                       <div class="modal fade modal-mini modal-primary" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
@@ -59,9 +67,8 @@
                           </div>
                         </div>
                       </div>
-                      <!--  End Modal -->
 
-                    </td>
+                    </td>!-->
                   </tr>
                 <% }) %>
                 </tbody>
@@ -75,3 +82,14 @@
   </div>
 </div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
+
+
+
+
+<!-- <div id="all-ideas" v-cloak>
+
+  <h1>TODO: Implement this page.</h1>
+  <p>(See also <em>assets/styles/pages/ideas/all-ideas.less</em>, <em>assets/js/pages/ideas/all-ideas.page.js</em>, and <em>api/controllers/ideas/view-all-ideas.js</em>.)</p>
+
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %> -->

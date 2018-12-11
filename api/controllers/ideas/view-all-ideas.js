@@ -1,16 +1,16 @@
 module.exports = {
 
 
-  friendlyName: 'View user ideas',
+  friendlyName: 'View all ideas',
 
 
-  description: 'Display "User ideas" page.',
+  description: 'Display "All ideas" page.',
 
 
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/ideas/user-ideas'
+      viewTemplatePath: 'pages/ideas/all-ideas'
     },
 
     invalid: {
@@ -22,32 +22,28 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    //get user id from path
-    let userId = this.req.param('id')
-
     //use the logged in users id if no userId was given
-    if (!userId) {
-      userId = this.req.session.userId
-    }
+      const userId = this.req.session.userId
+    
 
     //get the user
     const user = await User.findOne({
       id: userId
     })
 
-    //return if user could not be found
     if (!user) {
-      sails.lof.warning(`User with id ${userId} was not found`)
+      sails.log.info(`Could not find the logged in user with id ${userId}`)
       return exits.invalid()
     }
 
 
-    sails.log.info(`Searching ideas for ${userId}`)
-
     //look up ideas of the specified user
-    const ideas = await Idea.find({
-      owner: userId
-    }).populate('owner').populate('upvoters').populate('downvoters')
+    const ideas = await Idea.find().populate('owner').populate('upvoters').populate('downvoters')
+
+    if (!ideas) {
+      sails.log.info(`Could not find any ideas`)
+      return exits.invalid()
+    }
 
     sails.log.info(`Found ${ideas.length} ideas`)
 
@@ -59,5 +55,6 @@ module.exports = {
     });
 
   }
+
 
 };

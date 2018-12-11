@@ -34,11 +34,13 @@ module.exports.routes = {
   'GET /account/profile':    { action: 'account/view-edit-profile' },
 
   'GET /new/idea':           { action: 'ideas/view-new-idea' },
-  'GET /idea/:id':           { action: 'ideas/view-idea' },
+  'GET /ideas/:id':           { action: 'ideas/view-idea' },
 
   'GET /users/:id?/ideas':    { action: 'ideas/view-user-ideas' },
 
   'GET /ideas/:id/edit':      { action: 'ideas/view-edit-idea' },
+
+  'GET /ideas':               { action: 'ideas/view-all-ideas' },
 
   //  ╔╦╗╦╔═╗╔═╗  ╦═╗╔═╗╔╦╗╦╦═╗╔═╗╔═╗╔╦╗╔═╗   ┬   ╔╦╗╔═╗╦ ╦╔╗╔╦  ╔═╗╔═╗╔╦╗╔═╗
   //  ║║║║╚═╗║    ╠╦╝║╣  ║║║╠╦╝║╣ ║   ║ ╚═╗  ┌┼─   ║║║ ║║║║║║║║  ║ ║╠═╣ ║║╚═╗
@@ -72,5 +74,8 @@ module.exports.routes = {
   'GET /api/v1/ideas/:id/delete':                        { action: 'ideas/delete-idea' },
   'PUT /api/v1/ideas/edit-idea':                         { action: 'ideas/edit-idea' },
   'PUT /api/v1/ideas/:id/comment':                       { action: 'ideas/comment-idea' },
+
+  'GET /api/v1/ideas/:id/upvote':                      { action: 'ideas/upvote-idea' },
+  'GET /api/v1/ideas/:id/downvote':                      { action: 'ideas/downvote-idea' }
 
 };
