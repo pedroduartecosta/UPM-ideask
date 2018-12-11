@@ -186,6 +186,10 @@ without necessarily having a billing card.`
     ideas: {
       collection: 'idea',
       via: 'owner'
+    },
+    comments: {
+      collection: 'comment',
+      via: 'owner'
     }
   },
 
