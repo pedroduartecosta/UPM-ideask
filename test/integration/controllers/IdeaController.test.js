@@ -47,6 +47,10 @@ const invalidIdea = {
   description: "Idea description"
 }
 
+const validComment = {
+  content: 'Awesome idea, keep up!',
+}
+
 describe('IdeaController', function () {
 
   var agent = undefined
@@ -93,8 +97,14 @@ describe('IdeaController', function () {
       //act assert
       return await agent
           .post('/api/v1/ideas/new-idea')
-          .send(validIdea)
-          .expect(200)
+          .send({
+            id: validIdea.id,
+            title: validIdea.title,
+            subtitle: validIdea.subtitle,
+            description: validIdea.description,
+            notes: validIdea.notes
+          })
+          .expect(302)
     }),
 
     it('should fail for invalid input', async () => {
@@ -110,32 +120,37 @@ describe('IdeaController', function () {
 
   describe('Delete idea', () => {
 
-    this.beforeAll(async () => {
+    var idea = undefined
 
-      await Idea.destroy({}).fetch()
+    beforeEach(async () => {
 
-      idea = await Idea.create({ 
+      idea =  await Idea.create({ 
         title: validIdea.title,
         subtitle: validIdea.subtitle,
         description: validIdea.description,
         notes: validIdea.notes
       }).fetch()
+
+      return
+
     }),
 
-    it('should succeed for existing idea', async () => {
-
+    it('should succeed for existing idea', async () => {      
       //act assert
       return await agent
-        .post('/api/v1/ideas/delete')
-        .send({id: idea.id})
-        .expect(200)
+        .get('/api/v1/ideas/'+ idea.id +'/delete')
+        .expect(302)
     }),
 
     it('should fail for already deleted idea', async () => {
+
+      await agent
+        .get('/api/v1/ideas/'+ idea.id +'/delete')
+        .expect(302)
+        
       // act assert
       return await agent
-        .post('/api/v1/ideas/delete')
-        .send({id: idea.id})
+        .get('/api/v1/ideas/'+ idea.id +'/delete')
         .expect(400)
     })
 
@@ -314,6 +329,37 @@ describe('IdeaController', function () {
       const idea = await Idea.findOne({id: firstIdeaModel.id})
       expect(idea).to.containSubset(validIdea)
       
+      return
+    })
+
+  }),
+
+  describe('Comment ideas', () => {
+
+    var idea = undefined
+
+    beforeEach(async () => {
+
+      idea =  await Idea.create({ 
+        title: validIdea.title,
+        subtitle: validIdea.subtitle,
+        description: validIdea.description,
+        notes: validIdea.notes
+      }).fetch()
+
+      return
+
+    }),
+
+    it('should succeed for commenting on an idea and valid input', async () => {
+      //act
+      await agent.put('/api/v1/ideas/'+ idea.id +'/comment')
+        .send({
+          content: "Great idea",
+        })
+        .expect(200)
+
+      //assert
       return
     })
 

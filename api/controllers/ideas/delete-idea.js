@@ -29,9 +29,9 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    const id = this.req.param('id')
+    const ideaId = this.req.param('id')
 
-    var removedIdea = await Idea.destroyOne({id: id});
+    var removedIdea = await Idea.destroyOne({id: ideaId})
 
     if (removedIdea) {
       return exits.success('/users/ideas');
