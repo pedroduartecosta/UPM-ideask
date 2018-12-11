@@ -34,7 +34,7 @@ module.exports.routes = {
   'GET /account/profile':    { action: 'account/view-edit-profile' },
 
   'GET /new/idea':           { action: 'ideas/view-new-idea' },
-  'GET /idea/:id':           { action: 'ideas/view-idea' },
+  'GET /ideas/:id':           { action: 'ideas/view-idea' },
 
   'GET /users/:id?/ideas':    { action: 'ideas/view-user-ideas' },
 

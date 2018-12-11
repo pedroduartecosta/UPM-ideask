@@ -23,7 +23,7 @@
                 <% _.each(ideas, function (idea) { %>
                   <tr>
                     <td>
-                      <a href="#"><%= idea.title %></a>
+                      <a href="/ideas/<%= idea.id%>"><%= idea.title %></a>
                     </td>
                     <td>
                       <%= idea.subtitle %>
