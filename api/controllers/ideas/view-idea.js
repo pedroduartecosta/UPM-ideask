@@ -22,7 +22,7 @@ module.exports = {
     let ideaId = this.req.param('id')
 
     //look up idea
-    let idea = await Idea.findOne({id: inputs.id}).populate('owner').populate("comments")
+    let idea = await Idea.findOne({id: ideaId}).populate('owner').populate("comments")
 
     if (!idea) {
       sails.lof.warning(`Idea with id ${ideaId} was not found`)
