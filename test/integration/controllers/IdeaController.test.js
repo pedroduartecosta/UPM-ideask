@@ -230,6 +230,37 @@ describe('IdeaController', function () {
 
   }),
 
+  describe('Comment ideas', () => {
+
+    var idea = undefined
+
+    beforeEach(async () => {
+
+      idea =  await Idea.create({ 
+        title: validIdea.title,
+        subtitle: validIdea.subtitle,
+        description: validIdea.description,
+        notes: validIdea.notes
+      }).fetch()
+
+      return
+
+    }),
+
+    it('should succeed for commenting on an idea and valid input', async () => {
+      //act
+      await agent.put('/api/v1/ideas/'+ idea.id +'/comment')
+        .send({
+          content: "Great idea",
+        })
+        .expect(200)
+
+      //assert
+      return
+    })
+
+  }),
+
   describe('Edit ideas', async () => {
 
     var firstIdeaModel = undefined
@@ -332,100 +363,6 @@ describe('IdeaController', function () {
       return
     })
 
-  }),
-
-  describe('Comment ideas', () => {
-
-    var idea = undefined
-
-    beforeEach(async () => {
-
-      idea =  await Idea.create({ 
-        title: validIdea.title,
-        subtitle: validIdea.subtitle,
-        description: validIdea.description,
-        notes: validIdea.notes
-      }).fetch()
-
-      return
-
-    }),
-
-    it('should succeed for commenting on an idea and valid input', async () => {
-      //act
-      await agent.put('/api/v1/ideas/'+ idea.id +'/comment')
-        .send({
-          content: "Great idea",
-        })
-        .expect(200)
-
-      //assert
-      return
-    })
-
   })
-
-  // describe('Vote ideas', async () => {
-
-  //   var idea1 = null
-
-  //   this.beforeEach(async () => {
-
-  //     //clean ideas
-  //     await Idea.destroy({}).fetch()
-
-  //     //save idea for first user
-  //     idea1 = await Idea.create({
-  //       title: validIdea.title,
-  //       subtitle: validIdea.subtitle,
-  //       description: validIdea.description,
-  //       notes: validIdea.notes,
-  //       owner: user.id
-  //     }).fetch()
-
-  //     //save idea for second user
-  //     return await Idea.create({
-  //       title: secondValidIdea.title,
-  //       subtitle: secondValidIdea.subtitle,
-  //       description: secondValidIdea.description,
-  //       notes: secondValidIdea.notes,
-  //       owner: user.id
-  //     }).fetch()
-  //   }),
-
-  //   it('upvote should succeed', async () => {
-  //     return await agent
-  //         .get(`/api/v1/ideas/${idea1.id}/upvote`)
-  //         .expect(302)
-  //   }),
-
-  //   it('upvote should fails for second upvote', async () => {
-  //     await agent
-  //         .get(`/api/v1/ideas/${idea1.id}/upvote`)
-  //         .expect(302)
-
-  //     await agent
-  //         .get(`/api/v1/ideas/${idea1.id}/upvote`)
-  //         .expect(400)
-  //   }),
-
-  //   it('downvote should succeed', async() => {
-  //     return await agent
-  //         .get(`/api/v1/ideas/${idea1.id}/downvote`)
-  //         .expect(302)
-  //   }),
-
-  //   it('downvote should fails for second upvote', async () => {
-  //     await agent
-  //         .get(`/api/v1/ideas/${idea1.id}/downvote`)
-  //         .expect(302)
-
-  //     await agent
-  //         .get(`/api/v1/ideas/${idea1.id}/downvote`)
-  //         .expect(400)
-
-  //   })
-
-  // })
 
 });
