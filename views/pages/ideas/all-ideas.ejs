@@ -14,8 +14,6 @@
                     <th scope="col"><strong>Author</strong></th>
                     <th scope="col"><strong>Name</strong></th>
                     <th scope="col"><strong>Subtitle</strong></th>
-                    <!-- <th scope="col"><strong>Description</strong></th>
-                    <th scope="col"><strong>Notes</strong></th> -->
                     <th scope="col"><strong>⬆︎</strong></th>
                     <th scope="col"><strong>⬇︎</strong></th>
                   </tr>
@@ -32,12 +30,6 @@
                     <td>
                       <%= idea.subtitle %>
                     </td>
-                    <!-- <td>
-                      <%= idea.description %>
-                    </td>
-                    <td>
-                      <%= idea.notes %>
-                    </td> -->
                     <td>
                       <%= idea.upvoters.length %>
                     </td>
@@ -69,13 +61,4 @@
 </div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
 
-
-
-
-<!-- <div id="all-ideas" v-cloak>
-
-  <h1>TODO: Implement this page.</h1>
-  <p>(See also <em>assets/styles/pages/ideas/all-ideas.less</em>, <em>assets/js/pages/ideas/all-ideas.page.js</em>, and <em>api/controllers/ideas/view-all-ideas.js</em>.)</p>
-
-</div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %> -->
