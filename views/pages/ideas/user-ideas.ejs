@@ -42,18 +42,17 @@
                       </td>
 
                     <!-- Only if idea owner -->
-                    <% if(idea.owner.id === user.id) { %>
+                    <% if(idea.owner.id === loggedInUserId) { %>
                     <td class="text-right">
-                      <a href="/ideas/<%= idea.id %>/edit" type="submit" class="btn btn-default btn-sm col-md-4">
-                        Edit</a>
-                      <a  class="btn btn-danger btn-sm col-md-4" data-toggle="modal" data-target="#deletemodal"> Delete</a>
+                      <a href="/ideas/<%= idea.id %>/edit" type="submit" class="btn btn-default btn-sm col-md-4">Edit</a>
+                      <a  class="btn btn-danger btn-sm col-md-4" data-toggle="modal" data-target="#deletemodal">Delete</a>
 
                       <!-- Mini Modal -->
                       <div class="modal fade modal-mini modal-primary" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-body">
-                              <p>Do you really want to delete this?</p>
+                              <p>Do you really want to delete idea <%= idea.title %>?</p>
                             </div>
                             <div class="modal-footer">
                               <a href="/api/v1/ideas/<%= idea.id %>/delete"><button type="button" class="btn btn-link btn-neutral">Yes</button></a>

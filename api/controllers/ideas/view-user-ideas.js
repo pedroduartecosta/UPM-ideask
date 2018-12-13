@@ -56,6 +56,7 @@ module.exports = {
     return exits.success({
       user: user,
       ideas: ideas,
+      loggedInUserId: this.req.session.userId
     });
 
   }

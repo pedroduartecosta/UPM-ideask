@@ -44,21 +44,18 @@
                     <td>
                         <%= idea.downvoters.length %>
                     </td>
-
-                    <% if(user.id in idea.upvoters) { %>
-                      <td class="text-right">
-                        -
-                      </td>
-                    <% } else { %>
-                      <td class="text-right">
+                    <td class="text-right">
+                        <% if(idea.upvoters.map(u => u.id.toString()).indexOf(user.id.toString()) === -1) { %>
                           <a href="/api/v1/ideas/<%= idea.id %>/upvote">
                             ⬆︎Upvote
                           </a>
+                        <% } %>
+                        <% if(idea.downvoters.map(d => d.id.toString()).indexOf(user.id.toString()) === -1) { %>
                           <a href="/api/v1/ideas/<%= idea.id %>/downvote">
                             ⬇︎Downvote
                           </a>
+                        <% } %>
                       </td>
-                    <% } %>
                   </tr>
                 <% }) %>
                 </tbody>
