@@ -48,7 +48,7 @@ module.exports = {
     await Idea.addToCollection(idea.id, 'downvoters', user.id)
     await Idea.removeFromCollection(idea.id, 'upvoters', user.id)
 
-    return exits.success('/users/ideas');
+    return exits.success('/ideas');
 
   }
 

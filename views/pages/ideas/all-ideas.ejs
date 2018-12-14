@@ -14,10 +14,8 @@
                     <th scope="col"><strong>Author</strong></th>
                     <th scope="col"><strong>Name</strong></th>
                     <th scope="col"><strong>Subtitle</strong></th>
-                    <th scope="col"><strong>Description</strong></th>
-                    <th scope="col"><strong>Notes</strong></th>
-                    <th scope="col"><strong>Upvotes</strong></th>
-                    <th scope="col"><strong>Downvotes</strong></th>
+                    <th scope="col"><strong>⬆︎</strong></th>
+                    <th scope="col"><strong>⬇︎</strong></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -33,42 +31,23 @@
                       <%= idea.subtitle %>
                     </td>
                     <td>
-                      <%= idea.description %>
-                    </td>
-                    <td>
-                      <%= idea.notes %>
-                    </td>
-                    <td>
                       <%= idea.upvoters.length %>
                     </td>
                     <td>
                         <%= idea.downvoters.length %>
                     </td>
                     <td class="text-right">
-                        <a  class="btn btn-neutral btn-sm col-md-4" href="/api/v1/ideas/<%= idea.id %>/upvote">Upvote</a>
-                        <a  class="btn btn-neutral btn-sm col-md-4" href="/api/v1/ideas/<%= idea.id %>/downvote">Downvote</a>
-                    </td>
-
-                    <!-- <td class="text-right">
-                      <a href="/ideas/<%= idea.id %>/edit" type="submit" class="btn btn-default btn-sm col-md-4">
-                        Edit</a>
-                      <a  class="btn btn-danger btn-sm col-md-4" data-toggle="modal" data-target="#deletemodal"> Delete</a>
-
-                      <div class="modal fade modal-mini modal-primary" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-body">
-                              <p>Do you really want to delete this?</p>
-                            </div>
-                            <div class="modal-footer">
-                              <a href="/api/v1/ideas/<%= idea.id %>/delete"><button type="button" class="btn btn-link btn-neutral">Yes</button></a>
-                              <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">No</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                    </td>!-->
+                        <% if(idea.upvoters.map(u => u.id.toString()).indexOf(user.id.toString()) === -1) { %>
+                          <a href="/api/v1/ideas/<%= idea.id %>/upvote">
+                            ⬆︎Upvote
+                          </a>
+                        <% } %>
+                        <% if(idea.downvoters.map(d => d.id.toString()).indexOf(user.id.toString()) === -1) { %>
+                          <a href="/api/v1/ideas/<%= idea.id %>/downvote">
+                            ⬇︎Downvote
+                          </a>
+                        <% } %>
+                      </td>
                   </tr>
                 <% }) %>
                 </tbody>
@@ -76,20 +55,10 @@
             </div>
           </div>
         </div>
-        <a href="/new/idea" class="col-md-4 btn btn-primary btn-round btn-lg btn-block">Create new idea</a>
       </div>
     </div>
   </div>
 </div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
 
-
-
-
-<!-- <div id="all-ideas" v-cloak>
-
-  <h1>TODO: Implement this page.</h1>
-  <p>(See also <em>assets/styles/pages/ideas/all-ideas.less</em>, <em>assets/js/pages/ideas/all-ideas.page.js</em>, and <em>api/controllers/ideas/view-all-ideas.js</em>.)</p>
-
-</div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %> -->
