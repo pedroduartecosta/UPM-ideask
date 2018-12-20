@@ -1,0 +1,64 @@
+<div id="all-ideas" v-cloak>
+  <div class="main-panel">
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title"> All on Ideask</h4>
+            </div>
+            <div class="card-body">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col"><strong>Author</strong></th>
+                    <th scope="col"><strong>Name</strong></th>
+                    <th scope="col"><strong>Subtitle</strong></th>
+                    <th scope="col"><strong>⬆︎</strong></th>
+                    <th scope="col"><strong>⬇︎</strong></th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% _.each(ideas, function (idea) { %>
+                  <tr>
+                    <td>
+                      <a href="/users/<%= idea.owner.id%>/ideas"><%= idea.owner.firstName %> <%= idea.owner.lastName %></a>
+                    </td>
+                    <td>
+                      <a href="/ideas/<%= idea.id%>"><%= idea.title %></a>
+                    </td>
+                    <td>
+                      <%= idea.subtitle %>
+                    </td>
+                    <td>
+                      <%= idea.upvoters.length %>
+                    </td>
+                    <td>
+                        <%= idea.downvoters.length %>
+                    </td>
+                    <td class="text-right">
+                        <% if(idea.upvoters.map(u => u.id.toString()).indexOf(user.id.toString()) === -1) { %>
+                          <a href="/api/v1/ideas/<%= idea.id %>/upvote">
+                            ⬆︎Upvote
+                          </a>
+                        <% } %>
+                        <% if(idea.downvoters.map(d => d.id.toString()).indexOf(user.id.toString()) === -1) { %>
+                          <a href="/api/v1/ideas/<%= idea.id %>/downvote">
+                            ⬇︎Downvote
+                          </a>
+                        <% } %>
+                      </td>
+                  </tr>
+                <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
+
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %> -->

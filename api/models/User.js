@@ -11,7 +11,11 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-
+    id: { 
+      type: 'string', 
+      columnName: '_id' 
+    },
+    
     emailAddress: {
       type: 'string',
       required: true,
@@ -178,8 +182,26 @@ without necessarily having a billing card.`
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    // n/a
+    //
+    ideas: {
+      collection: 'idea',
+      via: 'owner'
+    },
 
+    upvotes: {
+      collection: 'idea',
+      via: 'upvoters'
+    },
+
+    downvotes: {
+      collection: 'idea',
+      via: 'downvoters'
+    },
+    
+    comments: {
+      collection: 'comment',
+      via: 'owner'
+    }
   },
 
 

@@ -1,0 +1,368 @@
+var supertest = require('supertest');
+
+var sails = require('sails')
+
+var chai = require('chai')
+const chaiSubset = require('chai-subset');
+chai.use(chaiSubset);
+
+const expect = chai.expect
+
+const validIdea = {
+  title: 'New great idea!',
+  subtitle: 'Best subtitle ever.',
+  description: 'Idea description.',
+  notes: 'This is a note that I keep to my self, regarding future implementations of my idea.'
+}
+
+const secondValidIdea = {
+  title: 'Second great idea!',
+  subtitle: 'Second best subtitle ever.',
+  description: 'Second idea description.',
+  notes: 'This is a note that I keep to my self, regarding future implementations of my second idea.'
+}
+
+const editedIdea = {
+  title: 'Edited great idea!',
+  subtitle: 'Edited best subtitle ever.',
+  description: 'Edited idea description.',
+  notes: 'This is a note that I keep to my self, regarding future implementations of my edited idea.'
+}
+
+const validUser = {
+  emailAddress: 'walter@white.com',
+  firstName: 'Walter',
+  lastName: 'White',
+  password: 'ww'
+}
+
+const secondValidUser = {
+  emailAddress: 'jessie@pinkman.com',
+  firstName: 'Jessie',
+  lastName: 'Pinkman',
+  password: 'jp'
+}
+
+const invalidIdea = {
+  description: "Idea description"
+}
+
+const validComment = {
+  content: 'Awesome idea, keep up!',
+}
+
+describe('IdeaController', function () {
+
+  var agent = undefined
+  var user = undefined
+  var idea = undefined
+  
+  this.beforeAll(async () => {
+    //clean database before testing
+
+    await Idea.destroy({}).fetch()
+    await User.destroy({}).fetch()
+
+    const hashedPassword = await sails.helpers.passwords.hashPassword(validUser.password)
+
+    user = await User.create({ 
+      emailAddress: validUser.emailAddress,
+      password: hashedPassword,
+      firstName: validUser.firstName,
+      lastName: validUser.lastName
+      }).fetch()
+
+    agent = supertest.agent(sails.hooks.http.app)
+    await agent.put('/api/v1/entrance/login')
+                      .send(
+                        {
+                          emailAddress: validUser.emailAddress,
+                          password: validUser.password
+                        }
+                      )
+                      .expect(200)
+  })
+
+
+  this.afterAll(async () => {
+    //clean database after testing
+    await User.destroy({}).fetch()
+    return await Idea.destroy({}).fetch()
+  })
+
+  describe('Create idea', () => {
+
+    it('should succeed for valid input', async () => {
+
+      //act assert
+      return await agent
+          .post('/api/v1/ideas/new-idea')
+          .send({
+            id: validIdea.id,
+            title: validIdea.title,
+            subtitle: validIdea.subtitle,
+            description: validIdea.description,
+            notes: validIdea.notes
+          })
+          .expect(302)
+    }),
+
+    it('should fail for invalid input', async () => {
+      // act assert
+      return await agent
+        .post('/api/v1/ideas/new-idea')
+        .send(invalidIdea)
+        .expect(400)
+    })
+
+
+  }),
+
+  describe('Delete idea', () => {
+
+    var idea = undefined
+
+    beforeEach(async () => {
+
+      idea =  await Idea.create({ 
+        title: validIdea.title,
+        subtitle: validIdea.subtitle,
+        description: validIdea.description,
+        notes: validIdea.notes
+      }).fetch()
+
+      return
+
+    }),
+
+    it('should succeed for existing idea', async () => {      
+      //act assert
+      return await agent
+        .get('/api/v1/ideas/'+ idea.id +'/delete')
+        .expect(302)
+    }),
+
+    it('should fail for already deleted idea', async () => {
+
+      await agent
+        .get('/api/v1/ideas/'+ idea.id +'/delete')
+        .expect(302)
+        
+      // act assert
+      return await agent
+        .get('/api/v1/ideas/'+ idea.id +'/delete')
+        .expect(400)
+    })
+
+
+  }),
+
+  describe('List ideas for user', () => {
+
+    this.beforeAll(async () => {
+
+      await Idea.create({
+        title: validIdea.title,
+        subtitle: validIdea.subtitle,
+        description: validIdea.description,
+        notes: validIdea.notes,
+        owner: user.id
+      })
+
+      return await Idea.create({
+        title: secondValidIdea.title,
+        subtitle: secondValidIdea.subtitle,
+        description: secondValidIdea.description,
+        notes: secondValidIdea.notes,
+        owner: user.id
+      })
+    }),
+
+
+    it('should succeed for logged in user', async () => {
+
+      return await agent
+          .get('/users/ideas')
+          .expect(200)
+
+    }),
+
+    it('should succeed for given user id', async () => {
+
+      return await agent
+            .get(`/users/${user.id}/ideas`)
+            .expect(200)
+
+    })
+
+
+  }),
+
+  describe('List all ideas', () => {
+
+    this.beforeAll(async () => {
+
+      await Idea.create({
+        title: validIdea.title,
+        subtitle: validIdea.subtitle,
+        description: validIdea.description,
+        notes: validIdea.notes,
+        owner: user.id
+      })
+
+      return await Idea.create({
+        title: secondValidIdea.title,
+        subtitle: secondValidIdea.subtitle,
+        description: secondValidIdea.description,
+        notes: secondValidIdea.notes,
+        owner: user.id
+      })
+    }),
+
+
+    it('should succeed', async () => {
+
+      return await agent
+          .get('/ideas')
+          .expect(200)
+
+    })
+
+  }),
+
+  describe('Comment ideas', () => {
+
+    var idea = undefined
+
+    beforeEach(async () => {
+
+      idea =  await Idea.create({ 
+        title: validIdea.title,
+        subtitle: validIdea.subtitle,
+        description: validIdea.description,
+        notes: validIdea.notes
+      }).fetch()
+
+      return
+
+    }),
+
+    it('should succeed for commenting on an idea and valid input', async () => {
+      //act
+      await agent.put('/api/v1/ideas/'+ idea.id +'/comment')
+        .send({
+          content: "Great idea",
+        })
+        .expect(200)
+
+      //assert
+      return
+    })
+
+  }),
+
+  describe('Edit ideas', async () => {
+
+    var firstIdeaModel = undefined
+    var secondIdeaModel = undefined
+
+    var secondUser = undefined
+
+    this.beforeAll(async () => {
+      //create second user in db
+      const hashedPassword = await sails.helpers.passwords.hashPassword(secondValidUser.password)
+      secondUser = await User.create({ 
+        emailAddress: secondValidUser.emailAddress,
+        password: hashedPassword,
+        firstName: secondValidUser.firstName,
+        lastName: secondValidUser.lastName
+        }).fetch()
+
+        return
+    })
+
+    this.beforeEach(async () => {
+      //clean ideas
+      await Idea.destroy({}).fetch()
+
+      //save idea for first user
+      firstIdeaModel = await Idea.create({
+        title: validIdea.title,
+        subtitle: validIdea.subtitle,
+        description: validIdea.description,
+        notes: validIdea.notes,
+        owner: user.id
+      }).fetch()
+
+      //save idea for second user
+      secondIdeaModel = await Idea.create({
+        title: secondValidIdea.title,
+        subtitle: secondValidIdea.subtitle,
+        description: secondValidIdea.description,
+        notes: secondValidIdea.notes,
+        owner: secondUser.id
+      }).fetch()
+
+      return
+    }),
+
+    it('should succeed for own idea and valid input', async () => {
+
+      //act
+      await agent.put(`/api/v1/ideas/edit-idea`)
+                        .send({
+                          id: firstIdeaModel.id,
+                          title: editedIdea.title,
+                          subtitle: editedIdea.subtitle,
+                          description: editedIdea.description,
+                          notes: editedIdea.notes
+                        })
+                        .expect(200)
+
+      //assert
+      const idea = await Idea.findOne({id: firstIdeaModel.id})
+      expect(idea).to.containSubset(editedIdea)
+      
+      return
+    }),
+
+    it('should fail for own idea but invalid input', async () => {
+
+      //act
+      await agent.put(`/api/v1/ideas/edit-idea`)
+                  .send({
+                    
+                  })
+                  .expect(400)
+
+      //assert
+      const idea = await Idea.findOne({id: firstIdeaModel.id})
+      expect(idea).to.containSubset(validIdea)
+      
+      return
+
+    }),
+
+    it('should fail for someone elses idea and valid input', async () => {
+
+      //act
+      await agent.put(`/api/v1/ideas/edit-idea`)
+                        .send({
+                          id: secondIdeaModel.id,
+                          title: editedIdea.title,
+                          subtitle: editedIdea.subtitle,
+                          description: editedIdea.description,
+                          notes: editedIdea.notes
+                        })
+                        .expect(403)
+
+      //assert
+      const idea = await Idea.findOne({id: firstIdeaModel.id})
+      expect(idea).to.containSubset(validIdea)
+      
+      return
+    })
+
+  })
+
+});

@@ -1,0 +1,87 @@
+<div id="idea" v-cloak>
+  <div class="main-panel">
+    <div v-if="cloudSuccess" style="position: fixed; right: 10px; top: 10px; z-index: 10000;">
+      <div class="alert alert-success" role="alert">
+        <div class="container">
+          <div class="alert-icon">
+            <i class="now-ui-icons ui-2_like"></i>
+          </div>
+          <strong>Well done!</strong> Your ideas was successfully created.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+              </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Create an idea</h4>
+            </div>
+            <div class="card-body">
+
+              <div class="idea-form">
+                <p class="text-center">Share your ideas with the world!</p>
+                <hr/>
+
+                <ajax-form action="newIdea" :syncing.sync="syncing" :cloud-error.sync="cloudError"
+                           @submitted="submittedForm()"
+                           :handle-parsing="handleParsingForm">
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label for="title">Title *</label>
+                      <input class="form-control" id="title" type="text" :class="[formErrors.title ? 'is-invalid' : '']"
+                             v-model.trim="formData.title" placeholder="" autocomplete="name"
+                             focus-first>
+                      <div class="invalid-feedback" v-if="formErrors.title">Please provide a title for your idea.</div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="title">Subtitle *</label>
+                      <input class="form-control" id="subtitle" type="text"
+                             :class="[formErrors.subtitle ? 'is-invalid' : '']"
+                             v-model.trim="formData.subtitle" placeholder="" autocomplete="name"
+                             focus-first>
+                      <div class="invalid-feedback" v-if="formErrors.subtitle">Please provide a subtitle for your idea.
+                      </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="email-address">Description*</label>
+                      <input class="form-control" id="description" type="textarea"
+                             :class="[formErrors.description ? 'is-invalid' : '']" v-model.trim="formData.description"
+                             placeholder="">
+                      <div class="invalid-feedback" v-if="formErrors.description">
+                        Please provide a description for your idea.
+                      </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <label for="email-address">Notes *</label>
+                      <input class="form-control" id="notes" type="textarea"
+                             :class="[formErrors.notes ? 'is-invalid' : '']"
+                             v-model.trim="formData.notes" placeholder="">
+                      <div class="invalid-feedback" v-if="formErrors.subtitle">Please provide notes for your idea.</div>
+                    </div>
+                    * All fields are mandatory
+                    <div class="form-group col-md-12">
+                      <div class="row">
+                        <ajax-button type="submit" :syncing="syncing"
+                                     class="col-md-4 btn-primary btn-round btn-lg btn-block">Create
+                        </ajax-button>
+                        <a href="/users/ideas" class="col-md-4 btn btn-round btn-lg btn-block">Cancel</a>
+                      </div>
+                    </div>
+                  </div>
+                </ajax-form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

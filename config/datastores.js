@@ -53,5 +53,9 @@ module.exports.datastores = {
 
   },
 
+  test: {
+    adapter: 'sails-mongo',
+    url: 'mongodb://admin:password123@ds137863.mlab.com:37863/heroku_0m9vm9gc',
+  },
 
 };
